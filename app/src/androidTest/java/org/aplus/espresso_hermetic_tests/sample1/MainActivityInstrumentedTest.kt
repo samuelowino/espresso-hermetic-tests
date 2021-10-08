@@ -1,6 +1,7 @@
 package org.aplus.espresso_hermetic_tests.sample1
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -59,6 +60,15 @@ class MainActivityInstrumentedTest {
     fun showButtonText_Test(){
         onView(withId(R.id.show_message_button))
             .check(matches(withText("Show New Character")))
+    }
+
+    @Test
+    fun updateCharacterLabel(){
+        onView(withId(R.id.show_message_button))
+            .perform(click())
+
+        onView(withId(R.id.hello_world_text_view))
+            .check(matches(withText("Morpheous")))
     }
 
     @Test
